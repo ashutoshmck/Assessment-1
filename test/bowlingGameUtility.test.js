@@ -1,4 +1,4 @@
-const { calculateBowlingScore } = require('../src/bowlingGameUtility');
+const { calculateBowlingScore, findBestScore } = require('../src/bowlingGameUtility');
 
 describe('Bowling Game Utility',()=>{
   describe('Bowling game score calculator',()=>{
@@ -13,6 +13,11 @@ describe('Bowling Game Utility',()=>{
     });
     it('should return total score of a game when input is correct', ()=> {
       expect(calculateBowlingScore([3, 6, 3, 6, 3, 6, 3, 6, 3, 6, 3, 6, 3, 6, 3, 6, 3, 6, 3, 6])).toBe(90);
+    });
+  });
+  describe('Maximum score calculator',()=>{
+    it('should return maximum score from multiple games', ()=> {
+      expect( findBestScore([[3, 6, 3, 6, 3, 6, 3, 6, 3, 6, 3, 6, 3, 6, 3, 6, 3, 6, 3, 6],[3, 6, 3, 6, 3, 6, 3, 6, 3, 6, 3, 6, 3, 6, 3, 6, 3, 6, 3, 6]])).toBe(90);
     });
   });
 });

@@ -1,3 +1,5 @@
+const maxFrames=10;
+const minRolls=12;
 const calculateBowlingScore=(rolls)=>
 {
   if(!Array.isArray(rolls))
@@ -5,7 +7,7 @@ const calculateBowlingScore=(rolls)=>
     throw new Error('Not an array');
   }
 
-  if(rolls.length<12)
+  if(rolls.length<minRolls)
   {
     throw new Error('Invalid input');
   }
@@ -19,7 +21,7 @@ const calculateBowlingScore=(rolls)=>
       throw new Error('Invalid element in array');
     }
     
-    if(numberOfFrames==9)
+    if(numberOfFrames==maxFrames-1)
     {
       //open frame
       if(rolls[i]+rolls[i+1]<10)
@@ -61,4 +63,16 @@ const calculateBowlingScore=(rolls)=>
   }
   return runningScore;
 };
-module.exports={calculateBowlingScore};
+const findBestScore=(games)=>{
+  let bestScore=0;
+  games.forEach((element) => {
+    let currentGameScore=calculateBowlingScore(element);
+    if(currentGameScore>bestScore)
+    {
+      bestScore=currentGameScore;
+    }
+    
+  });
+  return bestScore;
+};
+module.exports={calculateBowlingScore,findBestScore};
